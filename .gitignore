@@ -274,3 +274,8 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+build
+widows-and-orphans-ctan.curlopt
+widows-and-orphans-ctan.zip
+widows-and-orphans-code.pdf
+widows-and-orphans-doc.pdf
