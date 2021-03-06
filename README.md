@@ -12,7 +12,7 @@ It will also identify and warn about words broken across columns or pages and di
 
 Package source can be found below:
 
-https://github.com/FrankMittelbach/fmitex/
+https://github.com/FrankMittelbach/fmitex-widows-and-orphans/
 
 The license is LPPL 1.3c.
 
@@ -22,7 +22,7 @@ https://www.latex-project.org/publications/indexbytopic/2e-packages/
 
 -----
 
-Copyright (C) 2018-2020 Frank Mittelbach<br />
+Copyright (C) 2018-2021 Frank Mittelbach<br />
 <https://latex-project.org/> <br />
 All rights reserved.
 

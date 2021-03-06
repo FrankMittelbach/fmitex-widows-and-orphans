@@ -1,7 +1,11 @@
+2021-03-05  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* widows-and-orphans.dtx:
+	xparse now part of the kernel and doesn't need loading.
+
 2020-01-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* widows-and-orphans.dtx:
-
 	Version 1.0c was a maintenance release without any code changes.
 
 2018-11-18    <Frank.Mittelbach@latex-project.org>

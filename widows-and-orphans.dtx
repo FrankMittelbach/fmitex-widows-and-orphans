@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %%
-%% File: widows-and-orphans.dtx (C) Copyright 2017-2020 Frank Mittelbach
+%% File: widows-and-orphans.dtx (C) Copyright 2017-2021 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -251,9 +251,10 @@
 % two packages we want to use: \pkg{xparse} for the user interface and
 % \pkg{l3keys2e} for key/value option syntax. They load the needed
 % \pkg{expl3} code so we are ready to roll afterwards.
+% Nowadays \pkg{xparse} is in the kernel so doesn't need loading any longer.
 %
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}    \RequirePackage{xparse,l3keys2e}
+\NeedsTeXFormat{LaTeX2e}    \RequirePackage{l3keys2e}
 %    \end{macrocode}
 %
 % Then we announce the package to the world at large. This declaration
@@ -334,7 +335,7 @@
 % \end{figure}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage{widows-and-orphans}{2020/01/22}{v1.0c}
+\ProvidesExplPackage{widows-and-orphans}{2021/03/06}{v1.0d}
                     {Detecting widows and orphans (FMi)}
 %    \end{macrocode}
 %

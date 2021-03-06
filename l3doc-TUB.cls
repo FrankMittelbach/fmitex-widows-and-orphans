@@ -20,20 +20,20 @@
 %%
 %% This is really a temporary file intended for a single article
 %% written for TugBoat It is a copy of l3doc.cls with a couple of
-%% changes, nothing more Eventually this will get replaced by a real
+%% changes, nothing more. Eventually this will get replaced by a real
 %% class once l3doc.cls gets properly split into a class part and a
 %% support part.
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% If you use this for anything other than processing the documents it
-%% was meant for (which so far is 1) you are on your own :-)
+%% was meant for (which so far is 2) you are on your own :-)
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{expl3,xparse,calc}
-\ProvidesExplClass{l3doc-TUB}{2018/02/21}{}
-  {L3 Experimental documentation class (special version for TUGboat)}
+\ProvidesExplClass{l3doc-TUB}{2021/03/02}{}
+  {L3 Experimental documentation class (special version for TUGboat with fixes)}
 \clist_new:N \g_docinput_clist
 \seq_new:N \g_doc_functions_seq
 \seq_new:N \g_doc_macros_seq
@@ -1091,7 +1091,7 @@
     \dim_set:Nn \l__codedoc_trial_width_dim
       { \box_wd:N \l__codedoc_functions_coffin }
     \bool_set:Nn \l__codedoc_long_name_bool
-      { \dim_compare_p:nNn \l__codedoc_trial_width_dim > \marginparwidth }
+      { \dim_compare_p:nNn \l__codedoc_trial_width_dim > {\marginparwidth + 1cm} }  % FMi crude fix
   }
 \cs_new_protected:Npn \__codedoc_function_descr_start:w
   {
@@ -1400,10 +1400,10 @@
       {
         \llap
           {
-            \hbox_unpack_clear:N \l__codedoc_macro_index_box
+            \hbox_unpack_drop:N \l__codedoc_macro_index_box
             \vtop to \baselineskip
               {
-                \vbox_unpack_clear:N \l__codedoc_macro_box
+                \vbox_unpack_drop:N \l__codedoc_macro_box
                 \vss
               }
           }
@@ -1443,7 +1443,7 @@
         \__codedoc_if_macro_internal:nF {#1}
           { \seq_gput_right:Nn \g_doc_macros_seq {#1} }
         \hbox_set:Nw \l__codedoc_macro_index_box
-          \hbox_unpack_clear:N \l__codedoc_macro_index_box
+          \hbox_unpack_drop:N \l__codedoc_macro_index_box
           \int_gincr:N \c@CodelineNo
           \__codedoc_special_index:nn {#1} { main }
           \int_gdecr:N \c@CodelineNo
@@ -1455,7 +1455,7 @@
   {
     \vbox_set:Nn \l__codedoc_macro_box
       {
-        \vbox_unpack_clear:N \l__codedoc_macro_box
+        \vbox_unpack_drop:N \l__codedoc_macro_box
         \hbox { \llap { \__codedoc_print_macroname:nN {#1} #2 \ } }
       }
     \int_incr:N \l__codedoc_macro_int
