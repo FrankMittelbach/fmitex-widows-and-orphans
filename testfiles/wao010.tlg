@@ -3,9 +3,6 @@ Don't change this file in any respect.
 (widows-and-orphans.sty
 Package: widows-and-orphans ....-..-.. vv... Detecting widows and orphans (FMi)
 \l__fmwao_tmp_int=\count...
-LaTeX3 Info: Defining command \WaOsetup with sig. 'm' on line ....
-LaTeX3 Info: Defining command \WaOparameters with sig. '' on line ....
-LaTeX3 Info: Defining command \WaOignorenext with sig. '' on line ....
 )
 No file wao010.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line ....
@@ -28,17 +25,17 @@ braces):
 >  {51}  =>  {\@lowpenalty }
 >  {151}  =>  {\@medpenalty }
 >  {301}  =>  {\@highpenalty }
->  {250}  =>  {\clubpenalty +\interlinepenalty }
+>  {250}  =>  {\@clubpenalty +\interlinepenalty }
 >  {251}  =>  {\widowpenalty +\interlinepenalty }
->  {401}  =>  {\widowpenalty +\clubpenalty +\interlinepenalty }
+>  {401}  =>  {\widowpenalty +\@clubpenalty +\interlinepenalty }
 >  {152}  =>  {\displaywidowpenalty +\interlinepenalty }
->  {302}  =>  {\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+>  {302}  =>  {\displaywidowpenalty +\@clubpenalty +\interlinepenalty }
 >  {200}  =>  {\brokenpenalty +\interlinepenalty }
->  {350}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
+>  {350}  =>  {\brokenpenalty +\@clubpenalty +\interlinepenalty }
 >  {351}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
->  {501}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty
+>  {501}  =>  {\brokenpenalty +\widowpenalty +\@clubpenalty +\interlinepenalty
 }
->  {402}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty
+>  {402}  =>  {\brokenpenalty +\displaywidowpenalty +\@clubpenalty
 +\interlinepenalty }
 >  {9999}  =>  {\predisplaypenalty }.
 <recently read> }

@@ -1,3 +1,9 @@
+2022-08-27  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* widows-and-orphans.dtx (subsection{Checking \outputpenalty}):
+	When testing against the \outputpenalty use \@clubpenalty instead of
+	\clubpenalty to avoid spurious matches in some cases.
+
 2021-03-05  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* widows-and-orphans.dtx:

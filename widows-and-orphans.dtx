@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %%
-%% File: widows-and-orphans.dtx (C) Copyright 2017-2021 Frank Mittelbach
+%% File: widows-and-orphans.dtx (C) Copyright 2017-2022 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -335,7 +335,7 @@
 % \end{figure}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage{widows-and-orphans}{2021/03/06}{v1.0d}
+\ProvidesExplPackage{widows-and-orphans}{2022/08/27}{v1.0e}
                     {Detecting widows and orphans (FMi)}
 %    \end{macrocode}
 %
@@ -436,11 +436,21 @@
         { \@@_problem_identified:nn{widow}{Widow} }
       { \displaywidowpenalty }
         { \@@_problem_identified:nn{widow}{Display~ widow} }
-      { \clubpenalty }
+%    \end{macrocode}
+%    Above we have always talked about testing for \cs{clubpenalty}
+%    because that is the register \TeX{} is using. However, \LaTeX{}
+%    changes its value back and forth between \texttt{10000} (after a
+%    heading) and \cs{@clubpenalty} (the saved value) and sometimes
+%    even \texttt{0}. Thus when the output routine is triggered it
+%    could be any of these values and in case it is zero we would get
+%    spurious matches. So for comparison we always test against
+%    \cs{@clubpenalty}.
+%    \begin{macrocode}
+      { \@clubpenalty }
         { \@@_problem_identified:n{orphan} }
-      { \clubpenalty + \widowpenalty }
+      { \@clubpenalty + \widowpenalty }
         { \@@_problem_identified:nn{orphan-widow}{} }
-      { \clubpenalty + \displaywidowpenalty }
+      { \@clubpenalty + \displaywidowpenalty }
         { \@@_problem_identified:nn{orphan-widow}{display} }
 %    \end{macrocode}
 %
@@ -463,11 +473,11 @@
         { \@@_problem_identified:nn{widow}{Widow} }
       { \brokenpenalty + \displaywidowpenalty }
         { \@@_problem_identified:nn{widow}{Display~ widow} }
-      { \brokenpenalty + \clubpenalty }
+      { \brokenpenalty + \@clubpenalty }
         { \@@_problem_identified:n{orphan} }
-      { \brokenpenalty + \clubpenalty + \widowpenalty }
+      { \brokenpenalty + \@clubpenalty + \widowpenalty }
         { \@@_problem_identified:nn{orphan-widow}{} }
-      { \brokenpenalty + \clubpenalty + \displaywidowpenalty }
+      { \brokenpenalty + \@clubpenalty + \displaywidowpenalty }
         { \@@_problem_identified:nn{orphan-widow}{display} }
 %    \end{macrocode}
 %    Finally there is \cs{predisplaypenalty} that we may as well check also
@@ -701,14 +711,14 @@
 %    from $\cs{widowpenalty}+\cs{interlinepenalty}$, as the key and
 %    this formula as the property list value.
 %
-% \item For the next parameter, say \cs{clubpenalty}, we check if its
+% \item For the next parameter, say \cs{@clubpenalty}, we check if its
 %    value (or more precisely its value plus \cs{interlinepenalty}) is
 %    already a key in the property list. If that is the case, then we
 %    have failed and must modify the parameter value somehow.
 %
 % \item If not, we also have to check any combination of the current
 %    parameter with any parameter processed earlier. If that
-%    combination is possible, e.g., \cs{clubpenalty} (new) and
+%    combination is possible, e.g., \cs{@clubpenalty} (new) and
 %    \cs{widowpenalty} (already processed) then we also have to check
 %    the sum. If that sum is already a key in the property list then
 %    we have failed as well.
@@ -719,7 +729,7 @@
 %
 % \item We then change the parameter to this value and add all the
 %    combinations we tried before to the property list (that is
-%    $\cs{clubpenalty}+\cs{interlinepenalty}$ both alone and together with
+%    $\cs{@clubpenalty}+\cs{interlinepenalty}$ both alone and together with
 %    \cs{widowpenalty} in our example). Thus from now on those are
 %    also forbidden values.
 %
@@ -727,9 +737,9 @@
 %    parameter as the first argument and the list of different cases
 %    to try as a comma-separated list as a second argument, e.g.,
 %\begin{verbatim}
-%    \__fmwao_decide_penalty:Nn \clubpenalty 
-%             { \clubpenalty + \interlinepenalty ,
-%               \clubpenalty + \widowpenalty + \interlinepenalty }
+%    \__fmwao_decide_penalty:Nn \@clubpenalty 
+%             { \@clubpenalty + \interlinepenalty ,
+%               \@clubpenalty + \widowpenalty + \interlinepenalty }
 %\end{verbatim}
 %
 % \item This way we are adding all relevant parameters to the property
@@ -782,28 +792,28 @@
 %    \end{macrocode}
 %    Then comes the first real parameter for the orphans:
 %    \begin{macrocode}
-  \@@_decide_penalty:Nn \clubpenalty 
-    { \clubpenalty + \interlinepenalty }
+  \@@_decide_penalty:Nn \@clubpenalty 
+    { \@clubpenalty + \interlinepenalty }
 %    \end{macrocode}
 %    followed by the one for the widows and the one for the display widows:
 %    \begin{macrocode}
   \@@_decide_penalty:Nn \widowpenalty 
     { \widowpenalty + \interlinepenalty ,
-      \widowpenalty + \clubpenalty  + \interlinepenalty }
+      \widowpenalty + \@clubpenalty  + \interlinepenalty }
 
   \@@_decide_penalty:Nn \displaywidowpenalty 
     { \displaywidowpenalty + \interlinepenalty ,
-      \displaywidowpenalty + \clubpenalty + \interlinepenalty }
+      \displaywidowpenalty + \@clubpenalty + \interlinepenalty }
 %    \end{macrocode}
 %    \cs{brokenpenalty} can appear on its own, and also with each and
 %    every combination we have seen so far:
 %    \begin{macrocode}
   \@@_decide_penalty:Nn \brokenpenalty
     { \brokenpenalty + \interlinepenalty ,
-      \brokenpenalty + \clubpenalty + \interlinepenalty ,
+      \brokenpenalty + \@clubpenalty + \interlinepenalty ,
       \brokenpenalty + \widowpenalty + \interlinepenalty , 
-      \brokenpenalty + \widowpenalty + \clubpenalty + \interlinepenalty ,
-      \brokenpenalty + \displaywidowpenalty + \clubpenalty
+      \brokenpenalty + \widowpenalty + \@clubpenalty + \interlinepenalty ,
+      \brokenpenalty + \displaywidowpenalty + \@clubpenalty
                                             + \interlinepenalty }
 %    \end{macrocode}
 %    Finally we have the parameter for lonely displays (again without
@@ -824,16 +834,16 @@
 % >  {51}  =>  {\@lowpenalty }
 % >  {151}  =>  {\@medpenalty }
 % >  {301}  =>  {\@highpenalty }
-% >  {150}  =>  {\clubpenalty +\interlinepenalty }
+% >  {150}  =>  {\@clubpenalty +\interlinepenalty }
 % >  {152}  =>  {\widowpenalty +\interlinepenalty }
-% >  {302}  =>  {\widowpenalty +\clubpenalty +\interlinepenalty }
+% >  {302}  =>  {\widowpenalty +\@clubpenalty +\interlinepenalty }
 % >  {50}  =>  {\displaywidowpenalty +\interlinepenalty }
-% >  {200}  =>  {\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+% >  {200}  =>  {\displaywidowpenalty +\@clubpenalty +\interlinepenalty }
 % >  {100}  =>  {\brokenpenalty +\interlinepenalty }
-% >  {250}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
+% >  {250}  =>  {\brokenpenalty +\@clubpenalty +\interlinepenalty }
 % >  {252}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
-% >  {402}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty }
-% >  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty
+% >  {402}  =>  {\brokenpenalty +\widowpenalty +\@clubpenalty +\interlinepenalty }
+% >  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\@clubpenalty
 %                                                            +\interlinepenalty }
 % >  {10001}  =>  {\predisplaypenalty }.
 %\end{verbatim}
