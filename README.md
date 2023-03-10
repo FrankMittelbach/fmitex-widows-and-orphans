@@ -22,7 +22,7 @@ https://www.latex-project.org/publications/indexbytopic/2e-packages/
 
 -----
 
-Copyright (C) 2018-2022 Frank Mittelbach<br />
+Copyright (C) 2017-2023 Frank Mittelbach<br />
 <https://latex-project.org/> <br />
 All rights reserved.
 
