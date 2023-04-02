@@ -1,3 +1,12 @@
+2023-04-02  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* widows-and-orphans.dtx:
+	Honor a global "draft" option on the documentclass and change the
+	default	from warning to info in that case unless explicitly set
+	with a check option (gh/1)
+
+	Use \ProcessKeyOptions which requires a 2022-06 kernel.
+
 2022-08-27  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* widows-and-orphans.dtx (subsection{Checking \outputpenalty}):

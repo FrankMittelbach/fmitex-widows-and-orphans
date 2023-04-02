@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %%
-%% File: widows-and-orphans.dtx (C) Copyright 2017-2022 Frank Mittelbach
+%% File: widows-and-orphans.dtx (C) Copyright 2017-2023 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -154,6 +154,12 @@
 % when an issue is found: default is \ovalue{warning}, other
 % possibilities are \ovalue{error}, \ovalue{info} and \ovalue{none}.
 %
+% If the option \option{draft} is given on the document class then the
+% checking messages are reduced to \ovalue{info} messages and only appear in
+% the log file. If one wants warnings or errors in that case, one has
+% to explicitly specify \option{check} with the appropriate value on
+% the package level.
+%
 % The options \option{orphans} and \option{widows} set
 % reasonable parameter values; the default is to use whatever the class
 % defines. Possible values are \ovalue{prevent}, \ovalue{avoid} or
@@ -163,7 +169,7 @@
 % \option{avoid-all} or \option{default-all}. These options also assign
 % values to \cs{brokenpenalty} and \cs{predisplaypenalty}.
 %
-% \TypesetImplementationTF {\pagebreak}{}
+% ^^A\TypesetImplementationTF {\pagebreak}{}
 %
 %
 % \subsection{User commands}
@@ -247,14 +253,13 @@
 %<@@=fmwao>
 %    \end{macrocode}
 %
-% Then we check that we are running on top of \LaTeXe{} and load the
-% two packages we want to use: \pkg{xparse} for the user interface and
-% \pkg{l3keys2e} for key/value option syntax. They load the needed
-% \pkg{expl3} code so we are ready to roll afterwards.
-% Nowadays \pkg{xparse} is in the kernel so doesn't need loading any longer.
-%
+% Then we check that we are running on top of \LaTeXe{} and use a fairly recent
+% version of the kernel that contains the L3 programming layer,
+% \pkg{xparse} and the command \cs{ProcessKeyOptions}. For the latter
+% we need June 2022.
+% \changes{v1.0f}{2023/04/02}{Require a kernel of 2022-06 or newer}
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}    \RequirePackage{l3keys2e}
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
 %    \end{macrocode}
 %
 % Then we announce the package to the world at large. This declaration
@@ -335,7 +340,7 @@
 % \end{figure}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage{widows-and-orphans}{2023/03/10}{v1.0e}
+\ProvidesExplPackage{widows-and-orphans}{2023/04/02}{1.0f}
                     {Detecting widows and orphans (FMi)}
 %    \end{macrocode}
 %
@@ -960,6 +965,14 @@
   ,check / warning
      .code:n = \msg_redirect_module:nnn {widows-and-orphans}{warning}{ }
 %    \end{macrocode}
+%    If the class option \texttt{draft} was given we downgrade the
+%    checks to info, thus if one wants warnings or errors even then,
+%    then one has to give the check key explicitly on package level.
+% \changes{v1.0f}{2023/04/02}{Honor a global draft option (gh/1)}
+%    \begin{macrocode}
+  ,draft .meta:n = {check = info}
+%    \end{macrocode}
+%
 %    The other options set parameters to some hopefully ``reasonable''
 %   values\Dash no real surprises here. \LaTeX{} internally uses
 %   \cs{@clubpenalty} so we need to set this too, if we change
@@ -1015,8 +1028,9 @@
 }
 %    \end{macrocode}
 %    Once declared we evaluate the options given to the package:
+% \changes{v1.0f}{2023/04/02}{Use kernel method now not \pkg{l3keys2e}}
 %    \begin{macrocode}
-\ProcessKeysPackageOptions{fmwao}
+\ProcessKeyOptions[fmwao]
 %    \end{macrocode}
 %
 %

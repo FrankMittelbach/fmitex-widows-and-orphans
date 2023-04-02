@@ -8,5 +8,6 @@ l3build save \
 	wao007 \
 	wao008 \
 	wao009 \
-	wao010 
+	wao010 \
+	wao011
 

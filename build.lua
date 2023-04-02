@@ -29,7 +29,7 @@ packtdszip  = false
 
 uploadconfig = {
  pkg = "widows-and-orphans",
- version = "v1.0e 2023-03-10",
+ version = "v1.0f 2023-04-02",
  author = "Frank Mittelbach",
  license = "lppl1.3c",
  summary = "Identify (typographic) widows and orphans",
