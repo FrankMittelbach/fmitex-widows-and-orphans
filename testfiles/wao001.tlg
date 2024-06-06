@@ -19,8 +19,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line ....
 LaTeX Font Info:    ... okay on input line ....
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line ....
 LaTeX Font Info:    ... okay on input line ....
-The property list \l__fmwao_penalties_prop contains the pairs (without outer
-braces):
+The property list \l__fmwao_penalties_prop contains the pairs (without outer braces):
 >  {10000}  =>  {break at glue}
 >  {51}  =>  {\@lowpenalty }
 >  {151}  =>  {\@medpenalty }
@@ -33,10 +32,8 @@ braces):
 >  {100}  =>  {\brokenpenalty +\interlinepenalty }
 >  {250}  =>  {\brokenpenalty +\@clubpenalty +\interlinepenalty }
 >  {252}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
->  {402}  =>  {\brokenpenalty +\widowpenalty +\@clubpenalty +\interlinepenalty
-}
->  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\@clubpenalty
-+\interlinepenalty }
+>  {402}  =>  {\brokenpenalty +\widowpenalty +\@clubpenalty +\interlinepenalty }
+>  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\@clubpenalty +\interlinepenalty }
 >  {10001}  =>  {\predisplaypenalty }.
 <recently read> }
 l. ...\WaOparameters

@@ -45,8 +45,7 @@ Package widows-and-orphans Warning: Orphan on page 3
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=302 c=402#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-Package widows-and-orphans Warning: Orphan on page 5 (second column) and widow
-(widows-and-orphans)                on page 6 (first column)
+Package widows-and-orphans Warning: Orphan on page 5 (second column) and widow on page 6 (first column)
 [5]
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
@@ -83,8 +82,7 @@ Package widows-and-orphans Warning: Widow on page 8 (first column)
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=302 c=402#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-Package widows-and-orphans Warning: Orphan and widow on page 8 (first and
-(widows-and-orphans)                second column)
+Package widows-and-orphans Warning: Orphan and widow on page 8 (first and second column)
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
 % t=22.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#

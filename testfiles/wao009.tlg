@@ -45,9 +45,7 @@ Package widows-and-orphans Warning: Orphan on page 3
 For immediate help type H <return>.
  ...                                              
 l. ...  \verystupidpara\verystupidpara
-Suppression of a widow or orphan problem was requested but on the current page
-there doesn't seem to be any. Maybe the text was changed and the request
-should get (re)moved?
+Suppression of a widow or orphan problem was requested but on the current page there doesn't seem to be any. Maybe the text was changed and the request should get (re)moved?
 [5]
 %% goal height=60.0, max depth=5.0
 % t=22.0 g=60.0 b=10000 p=0 c=100000#
